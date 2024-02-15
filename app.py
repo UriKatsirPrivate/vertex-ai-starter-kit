@@ -1,12 +1,8 @@
-# https://huggingface.co/mistralai/Mistral-7B-v0.1
-
 import os
-# import requests
 from langchain.prompts import PromptTemplate
 import vertexai
 from langchain_google_vertexai import VertexAI
 from flask import request
-
 
 from flask import Flask, render_template
 
@@ -31,7 +27,6 @@ def hello():
     """
 
     return output
-
 
 # http://127.0.0.1:8080/query?question=list GCE instances
 @app.route('/query')

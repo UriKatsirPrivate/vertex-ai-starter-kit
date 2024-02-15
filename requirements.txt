@@ -1,5 +1,4 @@
 Flask==2.3.3
-# requests==2.31.0
 google-cloud-aiplatform==1.39.0
 langchain-google-vertexai==0.0.5
 langchain==0.1.6
