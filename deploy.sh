@@ -2,7 +2,7 @@
 export GOOGLE_CLOUD_PROJECT=landing-zone-demo-341118
 gcloud config set project $GOOGLE_CLOUD_PROJECT
 export SERVICE_NAME=vertex-ai-strater-kit
-export ARTIFACT_REGISTRY_NAME=cloud-run-source-deploy
+export ARTIFACT_REGISTRY_NAME=vertex-ai-strater-kit
 export REGION=me-west1
 export SERVICE_ACCOUNT_EMAIL=experts-hub-demo@landing-zone-demo-341118.iam.gserviceaccount.com
 
@@ -13,8 +13,10 @@ gcloud services enable run.googleapis.com --project $GOOGLE_CLOUD_PROJECT --asyn
 gcloud services enable aiplatform.googleapis.com --project $GOOGLE_CLOUD_PROJECT --async
 
 # Artifact Registry
+gcloud artifacts repositories create $ARTIFACT_REGISTRY_NAME --location=$REGION --repository-format=docker
 gcloud builds submit --tag $REGION-docker.pkg.dev/$GOOGLE_CLOUD_PROJECT/$ARTIFACT_REGISTRY_NAME/$SERVICE_NAME:latest
 
+# Deploy to Cloud Run
 gcloud run deploy $SERVICE_NAME \
 --image $REGION-docker.pkg.dev/$GOOGLE_CLOUD_PROJECT/$ARTIFACT_REGISTRY_NAME/$SERVICE_NAME:latest \
 --platform managed \
