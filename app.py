@@ -8,8 +8,10 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+project_id="landing-zone-demo-341118"
+
 def initialize_llm():
-    vertexai.init(project="landing-zone-demo-341118", location="us-central1")
+    vertexai.init(project=project_id, location="us-central1")
 
     return VertexAI(
         model_name='gemini-pro',
