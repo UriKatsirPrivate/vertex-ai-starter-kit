@@ -14,11 +14,11 @@ def initialize_llm():
     vertexai.init(project=project_id, location="us-central1")
 
     return VertexAI(
-        model_name='gemini-pro',
+        model_name='gemini-1.5-flash-001',
         max_output_tokens=8192,
         temperature=0.3,
         top_p=0.8,
-        top_k=23,
+        # top_k=23,
         verbose=True,
     )
 
@@ -52,7 +52,8 @@ def query_llm():
 
     output = chain.invoke({"user_input":question})
 
-    return output
+    # return display(Markdown(output))
+    return (output)
 
 if __name__ == '__main__':
     server_port = os.environ.get('PORT', '8080')
